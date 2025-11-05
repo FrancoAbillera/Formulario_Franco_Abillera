@@ -25,7 +25,7 @@
     <script type="text/javascript">
         (function(){
             emailjs.init({
-            publicKey: "pIz6BavMH5IcnMoL7",
+            publicKey: "aWRPGe6BPT7Q-RMNj",
             });
         })();
     </script>
@@ -102,7 +102,8 @@ form.addEventListener('submit', e => {
       alert("¡Formulario enviado correctamente!");
       window.location.reload();
     }, (error) => {
-      alert("Error al enviar el correo: " + error.text || error.message || "Error desconocido");
+      console.error("Error detallado:", error);
+        alert("Error al enviar el correo: " + (error.text || error.message || JSON.stringify(error)));
     });
   });
 </script>
