@@ -71,42 +71,43 @@
             var onloadCallback = function() {
                 alert("grecaptcha is ready!");
             };
-            </script>
 
+            // Script del formulario y el Google Sheets
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzB2laTAPISKWzzofx_ms25bfrqq4rosXiJZxulwFGCijApn1woo79au3YwygRTZlRw/exec'
+            
+            const form = document.forms['contact-form']
+            
+            form.addEventListener('submit', e => {
+            
+            e.preventDefault()
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thank you! Form is submitted" ))
+            .then(() => { window.location.reload(); })
+            .catch(error => console.error('Error!', error.message))
+            })
+
+
+            // Enviar con EmailJS
+            emailjs.sendForm('service_y4zdfao', 'template_hlu9635', form)
+            .then(() => {
+            alert("¡Formulario enviado correctamente!");
+            window.location.reload();
+            }, (error) => {
+            console.error("Error detallado:", error);
+                alert("Error al enviar el correo: " + (error.text || error.message || JSON.stringify(error)));
+            });
+
+        </script>
             <!-- Botón de envío -->
             <button type="submit" class="btn btn-primary " value="Submit">Enviar</button>
 
         </form>
     </div>
-    <script>
 
-    // Script del formulario y el Google Sheets
-
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzB2laTAPISKWzzofx_ms25bfrqq4rosXiJZxulwFGCijApn1woo79au3YwygRTZlRw/exec'
-    
-    const form = document.forms['contact-form']
-    
-    form.addEventListener('submit', e => {
-    
-    e.preventDefault()
-    
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => alert("Thank you! Form is submitted" ))
-    .then(() => { window.location.reload(); })
-    .catch(error => .error('Error!', error.message))
-    })
-
-
-    // Enviar con EmailJS
-    emailjs.sendForm('service_y4zdfao', 'template_hlu9635', form)
-    .then(() => {
-    alert("¡Formulario enviado correctamente!");
-    window.location.reload();
-    }, (error) => {
-    console.error("Error detallado:", error);
-        alert("Error al enviar el correo: " + (error.text || error.message || JSON.stringify(error)));
-    });
-</script>
+</body>
+</html>
 
 </body>
 </html>
