@@ -87,15 +87,14 @@
     const form = document.forms['contact-form']
     
     form.addEventListener('submit', e => {
-    e.preventDefault()
-
-    // Enviar a Google Sheets
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
-    alert("¡Gracias! ¡¡Este formulario fue enviado!!");
-    window.location.reload();
+      
+      e.preventDefault()
+      
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => alert("Thank you! Form is submitted" ))
+      .then(() => { window.location.reload(); })
+      .catch(error => .error('Error!', error.message))
     })
-    .catch(error => console.error('Error!', error.message));
 
 
     // Enviar con EmailJS
