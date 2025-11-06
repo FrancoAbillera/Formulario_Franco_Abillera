@@ -106,19 +106,6 @@ form.addEventListener('submit', e => {
         alert("Error al enviar el correo: " + (error.text || error.message || JSON.stringify(error)));
     });
   });
-        
-  emailjs.send("service_xxxxxx", "template_xxxxxx", {
-    name: "Prueba Manual",
-    email: "prueba@example.com",
-    subject: "Test desde consola",
-    message: "Este es un mensaje de prueba enviado manualmente."
-  })
-  .then(function(response) {
-     console.log("Correo enviado con éxito:", response);
-  })
-  .catch(function(error) {
-     console.error("Error al enviar el correo:", error);
-  });
 </script>
 
 </body>
