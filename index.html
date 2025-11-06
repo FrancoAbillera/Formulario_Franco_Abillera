@@ -86,6 +86,12 @@
     
         e.preventDefault()
         
+        // validacion de envio de datos
+        const formData = new FormData(form);
+        for (let pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]);
+        }
+
         // Enviar a Google Sheets
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
         .then(response => alert("¡Gracias! ¡¡Este formulario fue enviado!!" ))
