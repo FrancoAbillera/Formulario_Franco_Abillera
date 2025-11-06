@@ -106,9 +106,7 @@ form.addEventListener('submit', e => {
         alert("Error al enviar el correo: " + (error.text || error.message || JSON.stringify(error)));
     });
   });
-</script>
-<!-- a -->
-<script>
+        
   emailjs.send("service_xxxxxx", "template_xxxxxx", {
     name: "Prueba Manual",
     email: "prueba@example.com",
