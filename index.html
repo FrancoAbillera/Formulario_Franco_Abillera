@@ -91,10 +91,13 @@ form.addEventListener('submit', e => {
   e.preventDefault()
   
   // Enviar a Google Sheets
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-  .then(response => alert("¡Gracias! ¡¡Este formulario fue enviado!!" ))
-  .then(() => { window.location.reload(); })
-  .catch(error => console.error('Error!', error.message))
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    .then(response => {
+    alert("¡Gracias! ¡¡Este formulario fue enviado!!");
+    window.location.reload();
+    })
+    .catch(error => console.error('Error!', error.message));
+
 
     // Enviar con EmailJS
   emailjs.sendForm('service_y4zdfao', 'template_hlu9635', form)
