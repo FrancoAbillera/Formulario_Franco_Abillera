@@ -35,7 +35,7 @@
 <body>
     <!-- Formulario de contacto -->
     <div class="container mt-5">
-        <form id="contactForm" name="contact-form" method="post">
+        <form id="contactForm" name="contact-form" method="post" action="">
             <!-- Campo de nombre -->
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
@@ -79,18 +79,17 @@
         </form>
     </div>
     <script>
-      
+
     // Script del formulario y el Google Sheets
-      
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzB2laTAPISKWzzofx_ms25bfrqq4rosXiJZxulwFGCijApn1woo79au3YwygRTZlRw/exec'
 
-const form = document.forms['contact-form']
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzB2laTAPISKWzzofx_ms25bfrqq4rosXiJZxulwFGCijApn1woo79au3YwygRTZlRw/exec'
+    
+    const form = document.forms['contact-form']
+    
+    form.addEventListener('submit', e => {
+    e.preventDefault()
 
-form.addEventListener('submit', e => {
-  
-  e.preventDefault()
-  
-  // Enviar a Google Sheets
+    // Enviar a Google Sheets
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
     .then(response => {
     alert("¡Gracias! ¡¡Este formulario fue enviado!!");
@@ -100,15 +99,15 @@ form.addEventListener('submit', e => {
 
 
     // Enviar con EmailJS
-  emailjs.sendForm('service_y4zdfao', 'template_hlu9635', form)
+    emailjs.sendForm('service_y4zdfao', 'template_hlu9635', form)
     .then(() => {
-      alert("¡Formulario enviado correctamente!");
-      window.location.reload();
+    alert("¡Formulario enviado correctamente!");
+    window.location.reload();
     }, (error) => {
-      console.error("Error detallado:", error);
+    console.error("Error detallado:", error);
         alert("Error al enviar el correo: " + (error.text || error.message || JSON.stringify(error)));
     });
-  });
+    });
 </script>
 
 </body>
